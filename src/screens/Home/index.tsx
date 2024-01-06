@@ -1,15 +1,11 @@
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Participant } from "../../components/Participant";
+import { useParticipants } from "./hooks/useParticipants";
 import { styles } from "./styles";
 
 export const HomeScreen = () => {
-  const handleParticipantAdd = () => {
-    console.log("Você clicou no botão de Adicionar!");
-  };
-
-  const handleParticipantRemove = (name: string) => {
-    console.log(`Você clicou no botão de Remover o participante ${name}!`);
-  };
+  const { handleParticipantAdd, handleParticipantRemove, participantsData } =
+    useParticipants();
 
   return (
     <View style={styles.container}>
