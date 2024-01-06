@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
+  FlatList,
 } from "react-native";
 import { Participant } from "../../components/Participant";
 import { useParticipants } from "./hooks/useParticipants";
@@ -31,15 +32,21 @@ export const HomeScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {participantsData.map(({ id, name }) => (
+      <FlatList
+        data={participantsData}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
           <Participant
-            key={id}
-            name={name}
+            key={item.id}
+            name={item.name}
             onRemove={handleParticipantRemove}
           />
-        ))}
-      </ScrollView>
+        )}
+        ListEmptyComponent={() => (
+          <Text style={styles.listEmpty}>Nenhum participante adicionado!</Text>
+        )}
+      />
     </View>
   );
 };
