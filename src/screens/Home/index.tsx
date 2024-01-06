@@ -7,6 +7,10 @@ export const HomeScreen = () => {
     console.log("Você clicou no botão de Adicionar!");
   };
 
+  const handleParticipantRemove = (name: string) => {
+    console.log(`Você clicou no botão de Remover o participante ${name}!`);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.eventName}>Nome do evento</Text>
@@ -25,9 +29,7 @@ export const HomeScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <Participant />
-      <Participant />
-      <Participant />
+      <Participant name="Luiz" onRemove={handleParticipantRemove} />
     </View>
   );
 };
