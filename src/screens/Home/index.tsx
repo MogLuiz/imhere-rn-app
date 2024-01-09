@@ -26,7 +26,10 @@ export const HomeScreen = () => {
           placeholderTextColor="#6B6B6B"
         />
 
-        <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => handleParticipantAdd("José")}
+        >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
@@ -34,11 +37,11 @@ export const HomeScreen = () => {
       <FlatList
         data={participantsData}
         showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item}
         renderItem={({ item }) => (
           <Participant
-            key={item.id}
-            name={item.name}
+            key={item}
+            name={item}
             onRemove={handleParticipantRemove}
           />
         )}
