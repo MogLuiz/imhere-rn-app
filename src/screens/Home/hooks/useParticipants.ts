@@ -9,6 +9,18 @@ export const useParticipants = () => {
   };
 
   const handleParticipantRemove = (name: string) => {
+    Alert.alert(
+      "Remover participante",
+      `Você deseja remover o participante ${name}?`,
+      [
+        {
+          text: "Não",
+          onPress: () => console.log("Você clicou no botão Não!"),
+          style: "cancel"
+        },
+        { text: "Sim", onPress: () => console.log("Você clicou no botão Sim!") }
+      ]
+    );
     console.log(`Você clicou no botão de Remover o participante ${name}!`);
   };
 
