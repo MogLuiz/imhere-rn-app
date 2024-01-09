@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Alert } from "react-native";
 
 export const useParticipants = () => {
-  const [newParticipant, setNewParticipant] = useState("");
-  const [participantsData, setParticipantsData] = useState<string[]>(participants);
+  const [participantName, setParticipantName] = useState("");
+  const [participantsData, setParticipantsData] = useState(participants);
 
-  const handleNewParticipantChange = (text: string) => {
-    text && setNewParticipant(text);
+  const onChangeParticipantName = (text: string) => {
+    text && setParticipantName(text);
   }
 
   const handleParticipantAdd = (name: string) => {
@@ -20,7 +20,7 @@ export const useParticipants = () => {
       return
     }
 
-    setNewParticipant("");
+    setParticipantName("");
     setParticipantsData(prev => [...prev, name]);
   };
 
@@ -40,11 +40,11 @@ export const useParticipants = () => {
   };
 
   return {
-    newParticipant,
+    participantName,
     participantsData,
     handleParticipantAdd,
     handleParticipantRemove,
-    handleNewParticipantChange
+    onChangeParticipantName
   }
 }
 

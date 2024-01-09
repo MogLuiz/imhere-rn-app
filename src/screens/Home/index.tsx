@@ -13,10 +13,10 @@ import { useState } from "react";
 export const HomeScreen = () => {
   const {
     participantsData,
-    newParticipant,
+    participantName,
     handleParticipantAdd,
     handleParticipantRemove,
-    handleNewParticipantChange,
+    onChangeParticipantName,
   } = useParticipants();
 
   return (
@@ -28,16 +28,16 @@ export const HomeScreen = () => {
       <View style={styles.form}>
         <TextInput
           style={styles.input}
-          value={newParticipant}
+          value={participantName}
           placeholder="Nome do participante"
           placeholderTextColor="#6B6B6B"
-          onChange={(e) => handleNewParticipantChange(e.nativeEvent.text)}
+          onChange={(e) => onChangeParticipantName(e.nativeEvent.text)}
         />
 
         <TouchableOpacity
           style={styles.button}
-          disabled={!newParticipant}
-          onPress={() => handleParticipantAdd(newParticipant)}
+          disabled={!participantName}
+          onPress={() => handleParticipantAdd(participantName)}
         >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
