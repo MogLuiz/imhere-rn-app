@@ -1,11 +1,27 @@
+import { useState } from "react";
 import { Alert } from "react-native";
 
 export const useParticipants = () => {
+  const [newParticipant, setNewParticipant] = useState("");
+  const [participantsData, setParticipantsData] = useState<string[]>(participants);
+
+  const handleNewParticipantChange = (text: string) => {
+    text && setNewParticipant(text);
+  }
+
   const handleParticipantAdd = (name: string) => {
     if (participantsData.includes(name)) {
       Alert.alert("Participante já adicionado!", `O participante ${name} já está na lista!`);
+      return
     }
-    console.log("Você clicou no botão de Adicionar!");
+
+    if (!name) {
+      Alert.alert("Participante não informado!", "Você deve informar o nome do participante!");
+      return
+    }
+
+    setNewParticipant("");
+    setParticipantsData(prev => [...prev, name]);
   };
 
   const handleParticipantRemove = (name: string) => {
@@ -25,28 +41,16 @@ export const useParticipants = () => {
   };
 
   return {
+    newParticipant,
     participantsData,
     handleParticipantAdd,
     handleParticipantRemove,
+    handleNewParticipantChange
   }
 }
 
-const participantsData = [
+const participants = [
   'Luiz',
   'João',
-  'Maria',
-  'José',
-  'Pedro',
-  'Paulo',
-  'Lucas',
-  'Marcos',
-  'Mateus',
-  'Luciana',
-  'Mariana',
-  'Marta',
-  'Marcia',
-  'Margarida',
-  'Miguel',
-  'Michele',
-  'Mário',
+  'Maria'
 ];

@@ -8,10 +8,16 @@ import {
 import { Participant } from "../../components/Participant";
 import { useParticipants } from "./hooks/useParticipants";
 import { styles } from "./styles";
+import { useState } from "react";
 
 export const HomeScreen = () => {
-  const { handleParticipantAdd, handleParticipantRemove, participantsData } =
-    useParticipants();
+  const {
+    participantsData,
+    newParticipant,
+    handleParticipantAdd,
+    handleParticipantRemove,
+    handleNewParticipantChange,
+  } = useParticipants();
 
   return (
     <View style={styles.container}>
@@ -22,13 +28,16 @@ export const HomeScreen = () => {
       <View style={styles.form}>
         <TextInput
           style={styles.input}
+          value={newParticipant}
           placeholder="Nome do participante"
           placeholderTextColor="#6B6B6B"
+          onChange={(e) => handleNewParticipantChange(e.nativeEvent.text)}
         />
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => handleParticipantAdd("José")}
+          disabled={!newParticipant}
+          onPress={() => handleParticipantAdd(newParticipant)}
         >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
