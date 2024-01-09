@@ -3,7 +3,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  ScrollView,
   FlatList,
 } from "react-native";
 import { Participant } from "../../components/Participant";
