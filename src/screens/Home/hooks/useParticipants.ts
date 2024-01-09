@@ -31,10 +31,9 @@ export const useParticipants = () => {
       [
         {
           text: "Não",
-          onPress: () => console.log("Você clicou no botão Não!"),
           style: "cancel"
         },
-        { text: "Sim", onPress: () => console.log("Você clicou no botão Sim!") }
+        { text: "Sim", onPress: () => setParticipantsData(prev => prev.filter(participant => participant !== name)) }
       ]
     );
     console.log(`Você clicou no botão de Remover o participante ${name}!`);
